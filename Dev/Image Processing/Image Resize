@@ -1,0 +1,29 @@
+import PIL
+import os
+import os.path
+from PIL import Image
+
+
+pathLocation = r'C:\Users\jere-\FinalYearProject\Dataset'; #Folder Locations
+
+
+# Resizing All Images to Resolution Used in Pre-weighted Faster R-CNN Model
+
+for file in os.listdir(pathLocation):
+    try:
+        folder_loca = pathLocation + "/"+ file
+        for file in os.listdir(folder_loca): #os.listdir reads all file names in directory
+         try:
+                path_img = folder_loca +"/"+ file
+                img=Image.open(path_img)
+                img=img.resize((1024,1024))
+                img.save(path_img)
+         except:
+                 print("Error has Occured, Unsupported File Type")
+    except:
+            print("No Folders in Directory OR Invalid Datatype.Ensure pathLocation ONLY containts Folders")
+    else :
+            print("Images in", folder_loca ,"successfully resized")
+
+
+# Performing Image Processing to Level Image Intensity 
