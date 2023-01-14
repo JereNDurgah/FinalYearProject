@@ -4,7 +4,7 @@ import os.path
 from PIL import Image
 
 
-pathLocation = r'C:\Users\jere-\FinalYearProject\Dataset'; #Folder Locations
+pathLocation = r'C:\Users\jere-\FinalYearProject\Animal Dataset\Cat'; #Folder Locations
 
 
 # Resizing All Images to Resolution Used in Pre-weighted Faster R-CNN Model
@@ -26,4 +26,5 @@ for file in os.listdir(pathLocation):
             print("Images in", folder_loca ,"successfully resized")
 
 
-# Performing Image Processing to Level Image Intensity 
+
+#Code to adjust bounding boxes with image resolution
