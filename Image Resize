@@ -1,0 +1,31 @@
+import PIL
+import os
+from PIL import Image
+
+folder = "Animal Dataset\Train\Cat" # replace with the actual path to the folder
+size = 720 # desired width and height for square image
+
+
+
+for filename in os.listdir(folder):
+    if filename.endswith('.jpeg') or filename.endswith('.png'):
+        filepath = os.path.join(folder, filename)
+        with Image.open(filepath) as im:
+            width, height = im.size
+            if width < size or height < size:
+                # Upscale the image if its resolution is too small
+                im = im.resize((size, size), Image.BICUBIC)
+            if width != height:
+                # Crop the image to make it square
+                if width > height:
+                    left = (width - height) / 2
+                    right = width - left
+                    im = im.crop((left, 0, right, height))
+                else:
+                    top = (height - width) / 2
+                    bottom = height - top
+                    im = im.crop((0, top, width, bottom))
+            im.save(filepath)
+
+
+#Code to adjust bounding boxes with image resolution
