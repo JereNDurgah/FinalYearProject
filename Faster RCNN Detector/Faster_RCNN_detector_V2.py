@@ -5,7 +5,6 @@ from tensorflow.keras.layers import Input
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
-import faster_rcnn
 import os
 
 # Load the 5 COCO datasets
@@ -43,7 +42,7 @@ reduce_lr = ReduceLROnPlateau(factor=0.1, patience=5, verbose=1)
 callbacks = [checkpoint, tensorboard, early_stopping, reduce_lr]
 
 # Train the model on the 5 datasets
-history = model.fit(train_dataset, validation_data=val_dataset, epochs=100, callbacks=callbacks)
+history = model.fit(train_dataset, epochs=100, callbacks=callbacks,validation_split=0.2)
 
 # Save the trained model
 model.save('faster_rcnn_resnet50.h5')
