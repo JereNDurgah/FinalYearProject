@@ -4,16 +4,16 @@ import numpy as np
 import pycocotools.coco as coco
 
 # Load the COCO dataset
-dataDir = '/COCO Dataset\Sheep\Sheep'
+dataDir = '/COCO Dataset\Goat\Goat'
 dataType = 'val2017'
-annFile = 'COCO Dataset\Sheep\Sheep.json'.format(dataDir, dataType)
+annFile = 'COCO Dataset\Goat\Goat.json'.format(dataDir, dataType)
 coco = coco.COCO(annFile)
 
 # Get all image IDs
 imgIds = coco.getImgIds()
 
 # Open a CSV file to write the data to
-file_name = 'Sheep.csv'
+file_name = 'Goat.csv'
 with open(file_name, 'w', newline='') as f:
     writer = csv.writer(f)
     
@@ -29,6 +29,9 @@ with open(file_name, 'w', newline='') as f:
         # Get the file name for the current image
         img = coco.loadImgs(imgId)[0]
         file_name = img['file_name']
+        file_name = file_name[9:].strip('\\')
+        #print(file_name)
+
         
         # Loop over all annotations for the current image
         for ann in anns:
